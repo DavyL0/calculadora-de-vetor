@@ -1,24 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="410.0" prefWidth="402.0" spacing="10.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22" fx:controller="vetcalc.calculadoravetor.HelloController">
+<VBox spacing="10.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vetcalc.calculadoravetor.HelloController">
    <children>
-      <HBox alignment="CENTER" spacing="50.0">
+      <HBox alignment="CENTER" spacing="50.0" styleClass="hbox-radio">
          <children>
-            <RadioButton mnemonicParsing="false" text="2D" />
-            <RadioButton mnemonicParsing="false" text="3D" />
+            <RadioButton fx:id="doisButton" mnemonicParsing="false" text="2D">
+               <toggleGroup>
+                  <ToggleGroup fx:id="dimensaoGroup" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="tresButton" mnemonicParsing="false" text="3D" toggleGroup="$dimensaoGroup" />
          </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
       </HBox>
-      <VBox alignment="CENTER">
+      <VBox alignment="CENTER" styleClass="vbox-operacao">
          <children>
-            <ChoiceBox prefWidth="150.0" />
-            <Label text="Label" />
+            <ChoiceBox fx:id="operacoesBox" />
+            <Label fx:id="operacaoDescricaoLabel" text="Operação" />
          </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+      <HBox fx:id="representacaoBox" alignment="CENTER" layoutX="10.0" layoutY="20.0" spacing="50.0" styleClass="hbox-radio">
+         <children>
+            <RadioButton mnemonicParsing="false" text="Representação cartesiana" textAlignment="CENTER">
+               <toggleGroup>
+                  <ToggleGroup fx:id="representacaoGroup" />
+               </toggleGroup>
+               <styleClass>
+                  <String fx:value="radio-button" />
+                  <String fx:value="radio" />
+                  <String fx:value="dot" />
+               </styleClass>
+            </RadioButton>
+            <RadioButton mnemonicParsing="false" text="Módulo e direção" textAlignment="CENTER" toggleGroup="$representacaoGroup" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+      <VBox fx:id="vetorABox" styleClass="vbox-vetores">
+         <children>
+            <Label text="Vetor A" />
+            <VBox>
+               <children>
+                  <HBox spacing="50.0">
+                     <children>
+                        <TextField fx:id="valorX_A" promptText="Valor de X" />
+                        <TextField fx:id="valorY_A" promptText="Valor de Y" />
+                        <TextField fx:id="valorZ_A" promptText="Valor de Z" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+      <VBox fx:id="vetorBBox" styleClass="vbox-vetores">
+         <children>
+            <Label text="Vetor B" />
+            <HBox spacing="50.0">
+               <children>
+                  <TextField fx:id="valorX_B" promptText="Valor de X" />
+                  <TextField fx:id="valorY_B" promptText="Valor de Y" />
+                  <TextField fx:id="valorZ_B" promptText="Valor de Z" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+      <VBox fx:id="resultadoBox" layoutX="20.0" layoutY="155.0" styleClass="vbox-vetores">
+         <children>
+            <Label fx:id="resultadoLabel" text="Resultado" />
+            <Label fx:id="resultadoDescricaoLabel" layoutX="10.0" layoutY="10.0" text="a + b" />
+            <HBox spacing="50.0">
+               <children>
+                  <TextField fx:id="valorX_Resultado" editable="false" promptText="Valor de X">
+                     <cursor>
+                        <Cursor fx:constant="DISAPPEAR" />
+                     </cursor></TextField>
+                  <TextField fx:id="valorY_Resultado" editable="false" promptText="Valor de Y">
+                     <cursor>
+                        <Cursor fx:constant="DISAPPEAR" />
+                     </cursor></TextField>
+                  <TextField fx:id="valorZ_Resultado" editable="false" promptText="Valor de Z">
+                     <cursor>
+                        <Cursor fx:constant="DISAPPEAR" />
+                     </cursor></TextField>
+                  <TextField fx:id="anguloResultado" editable="false" layoutX="414.0" layoutY="10.0" promptText="Ângulo">
+                     <cursor>
+                        <Cursor fx:constant="DISAPPEAR" />
+                     </cursor></TextField>
+                  <TextField fx:id="escalarResultado" editable="false" layoutX="616.0" layoutY="10.0" promptText="a . b">
+                     <cursor>
+                        <Cursor fx:constant="DISAPPEAR" />
+                     </cursor></TextField>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
       </VBox>
    </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </VBox>
