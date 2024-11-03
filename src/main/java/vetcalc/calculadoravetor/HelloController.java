@@ -53,13 +53,6 @@ public class HelloController {
 
         //a caixa de selecionar as operaçoes fica indisponivel enquanto um dos radiobuttons nao for selecionado
         operacoesBox.setDisable(true);
-
-        //os campos do resultado não podem ser editados pelo usuario
-        valorX_Resultado.setEditable(false);
-        valorY_Resultado.setEditable(false);
-        valorZ_Resultado.setEditable(false);
-        anguloResultado.setEditable(false);
-        escalarResultado.setEditable(false);
     }
 
     private void configurarChoiceBox() {
