@@ -11,7 +11,7 @@
 
 <VBox spacing="10.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vetcalc.calculadoravetor.HelloController">
    <children>
-      <HBox alignment="CENTER" spacing="50.0">
+      <HBox alignment="CENTER" spacing="50.0" styleClass="hbox-radio">
          <children>
             <RadioButton fx:id="doisButton" mnemonicParsing="false" text="2D">
                <toggleGroup>
@@ -22,14 +22,20 @@
          <VBox.margin>
             <Insets />
          </VBox.margin>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
       </HBox>
-      <VBox alignment="CENTER">
+      <VBox alignment="CENTER" styleClass="vbox-operacao">
          <children>
             <ChoiceBox fx:id="operacoesBox" />
             <Label fx:id="operacaoDescricaoLabel" text="Operação" />
          </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
       </VBox>
-      <HBox fx:id="representacaoBox" alignment="CENTER" layoutX="10.0" layoutY="20.0" spacing="50.0">
+      <HBox fx:id="representacaoBox" alignment="CENTER" layoutX="10.0" layoutY="20.0" spacing="50.0" styleClass="hbox-radio">
          <children>
             <RadioButton mnemonicParsing="false" text="Representação cartesiana">
                <toggleGroup>
@@ -38,49 +44,61 @@
             </RadioButton>
             <RadioButton mnemonicParsing="false" text="Módulo e direção" toggleGroup="$representacaoGroup" />
          </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
       </HBox>
-      <VBox fx:id="vetorABox">
+      <VBox fx:id="vetorABox" styleClass="vbox-vetores">
          <children>
             <Label text="Vetor A" />
             <VBox>
                <children>
                   <HBox spacing="50.0">
                      <children>
-                        <TextField fx:id="valorX_A" promptText="Valor de X" />
-                        <TextField fx:id="valorY_A" promptText="Valor de Y" />
-                        <TextField fx:id="valorZ_A" promptText="Valor de Z" />
+                        <TextField fx:id="valorX_A" promptText="Valor de X" styleClass="textfield-class" />
+                        <TextField fx:id="valorY_A" promptText="Valor de Y" styleClass="textfield-class" />
+                        <TextField fx:id="valorZ_A" promptText="Valor de Z" styleClass="textfield-class" />
                      </children>
                   </HBox>
                </children>
             </VBox>
          </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
       </VBox>
-      <VBox fx:id="vetorBBox">
+      <VBox fx:id="vetorBBox" styleClass="vbox-vetores">
          <children>
             <Label text="Vetor B" />
             <HBox spacing="50.0">
                <children>
-                  <TextField fx:id="valorX_B" promptText="Valor de X" />
-                  <TextField fx:id="valorY_B" promptText="Valor de Y" />
-                  <TextField fx:id="valorZ_B" promptText="Valor de Z" />
+                  <TextField fx:id="valorX_B" promptText="Valor de X" styleClass="textfield-class" />
+                  <TextField fx:id="valorY_B" promptText="Valor de Y" styleClass="textfield-class" />
+                  <TextField fx:id="valorZ_B" promptText="Valor de Z" styleClass="textfield-class" />
                </children>
             </HBox>
          </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
       </VBox>
-      <VBox fx:id="resultadoBox" layoutX="20.0" layoutY="155.0">
+      <VBox fx:id="resultadoBox" layoutX="20.0" layoutY="155.0" styleClass="vbox-vetores">
          <children>
             <Label fx:id="resultadoLabel" text="Resultado" />
             <Label fx:id="resultadoDescricaoLabel" layoutX="10.0" layoutY="10.0" text="a + b" />
             <HBox spacing="50.0">
                <children>
-                  <TextField fx:id="valorX_Resultado" promptText="Valor de X" />
-                  <TextField fx:id="valorY_Resultado" promptText="Valor de Y" />
-                  <TextField fx:id="valorZ_Resultado" promptText="Valor de Z" />
-                  <TextField fx:id="anguloResultado" layoutX="414.0" layoutY="10.0" promptText="Ângulo" />
-                  <TextField fx:id="escalarResultado" layoutX="616.0" layoutY="10.0" promptText="a . b" />
+                  <TextField fx:id="valorX_Resultado" promptText="Valor de X" styleClass="textfield-class" />
+                  <TextField fx:id="valorY_Resultado" promptText="Valor de Y" styleClass="textfield-class" />
+                  <TextField fx:id="valorZ_Resultado" promptText="Valor de Z" styleClass="textfield-class" />
+                  <TextField fx:id="anguloResultado" layoutX="414.0" layoutY="10.0" promptText="Ângulo" styleClass="textfield-class" />
+                  <TextField fx:id="escalarResultado" layoutX="616.0" layoutY="10.0" promptText="a . b" styleClass="textfield-class" />
                </children>
             </HBox>
          </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
       </VBox>
    </children>
    <padding>

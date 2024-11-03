@@ -1,0 +1,31 @@
+.hbox-radio {
+    -fx-background-color: rgb(136, 253, 192, 0.5);
+    -fx-background-radius: 12;
+}
+
+.vbox-operacao {
+    -fx-background-color: rgb(136, 253, 192, 0.5);
+    -fx-background-radius: 12;
+}
+
+.vbox-vetores {
+    -fx-background-color: rgb(136, 253, 192, 0.5);
+    -fx-background-radius: 12;
+}
+
+.textfield-class {
+    -fx-highlight-fill: #5AA87F;
+    -fx-background-radius: 10;
+}
+
+.radio-button > .radio {
+   -fx-background-color: #f2f2f2;
+}
+
+.radio-button:hover > .radio {
+    -fx-background-color: #dadada;
+}
+
+.radio-button:selected > .radio > .dot{
+    -fx-background-color: #00a53e;
+}
