@@ -52,7 +52,7 @@ public class HelloController {
         alterarVisibilidadeZ(false);
 
         //a caixa de selecionar as operaçoes fica indisponivel enquanto um dos radiobuttons nao for selecionado
-        operacoesBox.setDisable(true);
+        desabilitarCampos(true);
     }
 
     private void configurarChoiceBox() {
@@ -73,7 +73,7 @@ public class HelloController {
         alterarVisibilidadeZ(isTresD);
 
         //a choicebox agora esta disponivel, ja que o radiobutton foi selecionado
-        operacoesBox.setDisable(false);
+        desabilitarCampos(false);
 
         if (isTresD && !operacoesBox.getItems().contains(Operacoes.PRODUTO_VETORIAL.nome)) {
             operacoesBox.getItems().add(Operacoes.PRODUTO_VETORIAL.nome);
@@ -83,6 +83,15 @@ public class HelloController {
 
         //verifica se a operação selecionada possui o Z e atualiza a visibilidade
         verificarVisibilidadeZ();
+    }
+
+    private void desabilitarCampos(boolean desativado) {
+        operacoesBox.setDisable(desativado);
+        representacaoBox.setDisable(desativado);
+        valorX_A.setDisable(desativado);
+        valorY_A.setDisable(desativado);
+        valorX_B.setDisable(desativado);
+        valorY_B.setDisable(desativado);
     }
 
     private void alterarResumoOperacoes(String newValue) {
