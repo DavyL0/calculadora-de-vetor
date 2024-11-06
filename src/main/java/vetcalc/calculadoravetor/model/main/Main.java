@@ -1,6 +1,6 @@
-package vetcalc.calculadoravetor.main;
+package vetcalc.calculadoravetor.model.main;
 
-import vetcalc.calculadoravetor.HelloApplication;
+import vetcalc.calculadoravetor.view.CalculatorApplication;
 
 /**
  * @author Murilo Nunes <murilo_no@outlook.com>
@@ -9,6 +9,6 @@ import vetcalc.calculadoravetor.HelloApplication;
  */
 public class Main {
     public static void main(String[] args) {
-        HelloApplication.main(args);
+        CalculatorApplication.main(args);
     }
 }

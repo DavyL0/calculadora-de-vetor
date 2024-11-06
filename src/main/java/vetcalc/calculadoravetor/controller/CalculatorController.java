@@ -1,11 +1,11 @@
-package vetcalc.calculadoravetor;
+package vetcalc.calculadoravetor.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class HelloController {
+public class CalculatorController {
     @FXML
     private TextField valorX_A, valorY_A, valorZ_A, valorX_B, valorY_B, valorZ_B, valorX_Resultado,
             valorY_Resultado, valorZ_Resultado, anguloResultado, escalarResultado;
