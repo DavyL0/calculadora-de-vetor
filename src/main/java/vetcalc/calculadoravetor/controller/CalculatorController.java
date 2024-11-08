@@ -4,8 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import vetcalc.calculadoravetor.model.calculo.Numeros;
 
 public class CalculatorController {
+    private Numeros numeros = new Numeros();
     @FXML
     private TextField valorX_A, valorY_A, valorZ_A, valorX_B, valorY_B, valorZ_B, valorX_Resultado,
             valorY_Resultado, valorZ_Resultado, anguloResultado, escalarResultado;
@@ -22,7 +24,8 @@ public class CalculatorController {
     @FXML
     private ToggleGroup dimensaoGroup, representacaoGroup;
 
-    private enum Operacoes {
+    public enum Operacoes {
+        MODULO("Módulo", "Calcula o módulo de um vetor", "Módulo do vetor"),
         ADICAO("Adição", "Realiza adição entre o vetor a e b", "a + b"),
         SUBTRACAO("Subtração", "Realiza subtração entre o vetor a e b", "a - b"),
         PRODUTO_ESCALAR("Produto Escalar", "Realiza o produto escalar entre o vetor a e b", "a . b"),
@@ -68,18 +71,29 @@ public class CalculatorController {
 
     private void setDimensao(boolean isTresD) {
         // Ajusta a visibilidade dos componentes com base na dimensão selecionada
-        representacaoBox.setVisible(!isTresD);
-        representacaoBox.setManaged(!isTresD);
         alterarVisibilidadeZ(isTresD);
 
-        //a choicebox agora esta disponivel, ja que o radiobutton foi selecionado
         desabilitarCampos(false);
+        operacoesBox.getItems().remove(Operacoes.MODULO.nome);
+        if (isTresD) {
+            operacoesBox.getItems().remove(Operacoes.MODULO.nome);
+        }
+        if(!isTresD) {
+            operacoesBox.getItems().add(Operacoes.MODULO.nome);
+        }
 
         if (isTresD && !operacoesBox.getItems().contains(Operacoes.PRODUTO_VETORIAL.nome)) {
             operacoesBox.getItems().add(Operacoes.PRODUTO_VETORIAL.nome);
         } else {
             operacoesBox.getItems().remove(Operacoes.PRODUTO_VETORIAL.nome);
         }
+        String dimensao;
+        if (isTresD) {
+            dimensao = "3d";
+        } else {
+            dimensao = "2d";
+        }
+        numeros.setDimensao(dimensao);
 
         //verifica se a operação selecionada possui o Z e atualiza a visibilidade
         verificarVisibilidadeZ();
@@ -87,7 +101,6 @@ public class CalculatorController {
 
     private void desabilitarCampos(boolean desativado) {
         operacoesBox.setDisable(desativado);
-        representacaoBox.setDisable(desativado);
         valorX_A.setDisable(desativado);
         valorY_A.setDisable(desativado);
         valorX_B.setDisable(desativado);

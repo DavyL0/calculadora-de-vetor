@@ -37,24 +37,6 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </VBox>
-      <HBox fx:id="representacaoBox" alignment="CENTER" layoutX="10.0" layoutY="20.0" spacing="50.0" styleClass="hbox-radio" VBox.vgrow="SOMETIMES">
-         <children>
-            <RadioButton mnemonicParsing="false" text="Representação cartesiana" textAlignment="CENTER">
-               <toggleGroup>
-                  <ToggleGroup fx:id="representacaoGroup" />
-               </toggleGroup>
-               <styleClass>
-                  <String fx:value="radio-button" />
-                  <String fx:value="radio" />
-                  <String fx:value="dot" />
-               </styleClass>
-            </RadioButton>
-            <RadioButton mnemonicParsing="false" text="Módulo e direção" textAlignment="CENTER" toggleGroup="$representacaoGroup" />
-         </children>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
-      </HBox>
       <VBox fx:id="vetorABox" styleClass="vbox-vetores" VBox.vgrow="SOMETIMES">
          <children>
             <Label text="Vetor A" />
