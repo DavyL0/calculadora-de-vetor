@@ -27,7 +27,6 @@ public class CalculatorApplication extends Application {
         stage.setTitle("Calculadora de Vetor");
         stage.setScene(scene);
         stage.show();
-        System.out.println(stage.getWidth() + " " + stage.getHeight());
     }
 
     public static void main(String[] args) {

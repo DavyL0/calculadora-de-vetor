@@ -26,6 +26,7 @@ public class CalculatorController {
     private RadioButton doisButton, tresButton;
     @FXML
     private ToggleGroup dimensaoGroup, representacaoGroup;
+    private boolean isTresD;
 
     public enum Operacoes {
         MODULO("Módulo", "Calcula o módulo de um vetor", "Módulo do vetor"),
@@ -53,7 +54,7 @@ public class CalculatorController {
     private void definirVisibilidadeInicial() {
         //torna os campos específicos de algumas operaçoes invisiveis
         setResultadosVisiveis(false, anguloResultado, escalarResultado, moduloResultado, valorX_Resultado, valorY_Resultado);
-        alterarVisibilidadeZ(false);
+        alterarVisibilidadeZ(false, false);
 
         //a caixa de selecionar as operaçoes fica indisponivel enquanto um dos radiobuttons nao for selecionado
         desabilitarCampos(true);
@@ -63,6 +64,7 @@ public class CalculatorController {
         //adiciona as operações à caixa de seleção
         operacoesBox.getItems().add(Operacoes.ANGULO.nome);
         operacoesBox.getItems().add(Operacoes.PRODUTO_ESCALAR.nome);
+        operacoesBox.getItems().add(Operacoes.MODULO.nome);
         //listener para atualizar a descrição da operação selecionada
         operacoesBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             alterarResumoOperacoes(newValue);
@@ -70,30 +72,25 @@ public class CalculatorController {
     }
 
     private void radioClicado(boolean isTresD) {
+        this.isTresD = isTresD;
         operacoesBox.setValue(null);
         resultadoDescricaoLabel.setText("");
         operacaoDescricaoLabel.setText("");
         // Ajusta a visibilidade dos componentes com base na dimensão selecionada
-        alterarVisibilidadeZ(isTresD);
+        alterarVisibilidadeZ(isTresD, false);
 
         desabilitarCampos(false);
 
         if (isTresD) {
-            operacoesBox.getItems().remove(Operacoes.MODULO.nome);
             if (!operacoesBox.getItems().contains(Operacoes.PRODUTO_VETORIAL.nome)) {
                 operacoesBox.getItems().add(Operacoes.PRODUTO_VETORIAL.nome);
             }
         } else {
             operacoesBox.getItems().remove(Operacoes.PRODUTO_VETORIAL.nome);
-            if (!operacoesBox.getItems().contains(Operacoes.MODULO.nome)) {
-                operacoesBox.getItems().add(Operacoes.MODULO.nome);
-            }
         }
 
         numeros.setDimensao(isTresD ? "3d" : "2d");
 
-        //verifica se a operação selecionada possui o Z e atualiza a visibilidade
-        verificarVisibilidadeZ();
     }
 
     private void desabilitarCampos(boolean desativado) {
@@ -119,13 +116,12 @@ public class CalculatorController {
                     configurarOperacao(Operacoes.MODULO, moduloResultado);
                     break;
                 case "Produto Vetorial":
-                    configurarOperacao(Operacoes.PRODUTO_VETORIAL);
-                    mostrarResultados();
+                    configurarOperacao(Operacoes.PRODUTO_VETORIAL, valorX_Resultado, valorY_Resultado, valorZ_Resultado);
                     break;
             }
         }
 
-        verificarVisibilidadeZ();
+        alterarVisibilidadeZ(isTresD, "Produto Vetorial".equals(operacoesBox.getValue()));
     }
 
     private void configurarOperacao(Operacoes operacao, TextField... camposVisiveis) {
@@ -134,17 +130,14 @@ public class CalculatorController {
         setResultadosVisiveis(true, camposVisiveis);
     }
 
-    private void mostrarResultados() {
-        setResultadosVisiveis(true, valorX_Resultado, valorY_Resultado, valorZ_Resultado);
-    }
+    private void alterarVisibilidadeZ(boolean visibilidadeCamposZ, boolean visibilidadeResultadoZ) {
+        valorZ_A.setVisible(visibilidadeCamposZ);
+        valorZ_A.setManaged(visibilidadeCamposZ);
+        valorZ_B.setVisible(visibilidadeCamposZ);
+        valorZ_B.setManaged(visibilidadeCamposZ);
 
-    private void verificarVisibilidadeZ() {
-        alterarVisibilidadeZ(tresButton.isSelected() && "Produto Vetorial".equals(operacoesBox.getValue()));
-    }
-
-    private void alterarVisibilidadeZ(boolean visivel) {
-        // Altera a visibilidade dos campos Z
-        setResultadosVisiveis(visivel, valorZ_A, valorZ_B, valorZ_Resultado);
+        valorZ_Resultado.setVisible(visibilidadeResultadoZ);
+        valorZ_Resultado.setManaged(visibilidadeResultadoZ);
     }
 
     private void setResultadosVisiveis(boolean visible, TextField... fields) {
