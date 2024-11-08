@@ -7,6 +7,7 @@ import vetcalc.calculadoravetor.view.CalculatorApplication;
  * @date 31/10/2024
  * @brief Class Main
  */
+
 public class Main {
     public static void main(String[] args) {
         CalculatorApplication.main(args);

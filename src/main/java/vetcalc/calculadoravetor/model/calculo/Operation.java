@@ -2,11 +2,12 @@ package vetcalc.calculadoravetor.model.calculo;
 
 import vetcalc.calculadoravetor.controller.CalculatorController;
 
-/*
- * @created 07/11/2024 - 19:30
- * @project calculadora-de-vetor
- * @Aauthor Murilo Nunes, Davy Lopes Oliveira, Hartur Sales, Pedro Henrique, Bruno Martins
+/**
+ * @author Murilo Nunes, Davy Lopes Oliveira, Hartur Sales, Pedro Henrique, Bruno Martins
+ * @date 31/10/2024
+ * @brief Class Main
  */
+
 public class Operation {
     private CalculatorController.Operacoes operacoes;
     private Numeros numeros = new Numeros();
