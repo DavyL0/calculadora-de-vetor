@@ -1,38 +1,48 @@
 .root {
-    -fx-background-color: #1d3849;
+    -fx-background-color: #224155;
 }
 
 .hbox-radio {
-    -fx-background-color: #a2bbcf;
+    -fx-background-color: rgb(162, 187, 207, 0.8);
     -fx-background-radius: 12;
 }
 
 .vbox-operacao {
-    -fx-background-color: #a2bbcf;
+    -fx-background-color: rgb(162, 187, 207, 0.8);
     -fx-background-radius: 12;
 }
 
 .vbox-vetores {
-    -fx-background-color: #a2bbcf;
+    -fx-background-color: rgb(162, 187, 207, 0.8);
     -fx-background-radius: 12;
 }
 
 .text-field, .choice-box {
     -fx-background-color: white;
-    -fx-border-color: #1d3849;
+    -fx-border-color: #2255c1;
     -fx-background-radius: 12;
     -fx-border-radius: 11;
     -fx-border-width: 1;
 }
 
+.text-field:focused, .choice-box:focused {
+    -fx-border-color: #064edc;
+    -fx-border-width: 2;
+}
+
+.choice-box:hover {
+    -fx-background-color: #c7d6e2;
+    -fx-background-radius: 12;
+}
+
 .radio-button > .radio {
-   -fx-background-color: white;
+    -fx-background-color: white;
 }
 
 .radio-button:hover > .radio {
-    -fx-background-color: #769d86;
+    -fx-background-color: #c7d6e2;
 }
 
 .radio-button:selected > .radio > .dot{
-    -fx-background-color: #1d3849;
+    -fx-background-color: #033555;
 }
