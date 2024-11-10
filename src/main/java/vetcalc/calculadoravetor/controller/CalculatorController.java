@@ -87,6 +87,12 @@ public class CalculatorController {
     }
 
     private void radioClicado(boolean isTresD) {
+        valorX_A.setText("");
+        valorY_A.setText("");
+        valorZ_A.setText("");
+        valorX_B.setText("");
+        valorY_B.setText("");
+        valorZ_B.setText("");
         this.isTresD = isTresD;
         operacoesBox.getSelectionModel().clearSelection();
         resultadoDescricaoLabel.setText("");
@@ -117,6 +123,7 @@ public class CalculatorController {
     }
 
     private void alterarResumoOperacoes(String newValue) {
+        desativarVetorB(true);
         setResultadosVisiveis(false, moduloResultado, anguloResultado, escalarResultado, valorX_Resultado, valorY_Resultado, valorZ_Resultado);
 
         if (newValue != null) {
@@ -129,6 +136,7 @@ public class CalculatorController {
                     break;
                 case "Módulo":
                     configurarOperacao(Operacoes.MODULO, moduloResultado);
+                    desativarVetorB(false);
                     break;
                 case "Produto Vetorial":
                     configurarOperacao(Operacoes.PRODUTO_VETORIAL, valorX_Resultado, valorY_Resultado, valorZ_Resultado);
@@ -137,6 +145,15 @@ public class CalculatorController {
         }
 
         alterarVisibilidadeZ(isTresD, "Produto Vetorial".equals(operacoesBox.getValue()));
+    }
+
+    private void desativarVetorB(boolean visible) {
+        vetorBBox.setManaged(visible);
+        vetorBBox.setVisible(visible);
+        valorX_B.setManaged(visible);
+        valorX_B.setVisible(visible);
+        valorY_B.setManaged(visible);
+        valorY_B.setVisible(visible);
     }
 
     private void configurarOperacao(Operacoes operacao, TextField... camposVisiveis) {
@@ -170,19 +187,29 @@ public class CalculatorController {
                 return;
             }
 
-            if (valorX_A.getText().isEmpty() || valorY_A.getText().isEmpty() || valorX_B.getText().isEmpty() || valorY_B.getText().isEmpty() ||
-                    (isTresD && (valorZ_A.getText().isEmpty() || valorZ_B.getText().isEmpty()))) {
-                resultadoLabel.setText("Preencha todos os campos");
-                return;
+            if (operacoesBox.getValue().equals("Módulo")) {
+                if (valorX_A.getText().isEmpty() || valorY_A.getText().isEmpty() || (isTresD && valorZ_A.getText().isEmpty())) {
+                    resultadoLabel.setText("Preencha todos os campos");
+                    return;
+                }
+            } else {
+                if (valorX_A.getText().isEmpty() || valorY_A.getText().isEmpty() || valorX_B.getText().isEmpty() || valorY_B.getText().isEmpty() ||
+                        (isTresD && (valorZ_A.getText().isEmpty() || valorZ_B.getText().isEmpty()))) {
+                    resultadoLabel.setText("Preencha todos os campos");
+                    return;
+                }
             }
 
             double x1 = Double.parseDouble(valorX_A.getText());
             double y1 = Double.parseDouble(valorY_A.getText());
             double z1 = isTresD ? Double.parseDouble(valorZ_A.getText()) : 0;
 
-            double x2 = Double.parseDouble(valorX_B.getText());
-            double y2 = Double.parseDouble(valorY_B.getText());
-            double z2 = isTresD ? Double.parseDouble(valorZ_B.getText()) : 0;
+            double x2 = 0, y2 = 0, z2 = 0;
+            if (!operacoesBox.getValue().equals("Módulo")) {
+                x2 = Double.parseDouble(valorX_B.getText());
+                y2 = Double.parseDouble(valorY_B.getText());
+                z2 = isTresD ? Double.parseDouble(valorZ_B.getText()) : 0;
+            }
 
             Numeros vetor1 = new Numeros();
             vetor1.setNumXA(x1);
