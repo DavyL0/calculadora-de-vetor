@@ -3,7 +3,7 @@ package vetcalc.calculadoravetor.model.main;
 import vetcalc.calculadoravetor.view.CalculatorApplication;
 
 /**
- * @author Murilo Nunes, Davy Lopes Oliveira, Hartur Sales, Pedro Henrique, Bruno Martins
+ * @author Murilo Nunes, Davy Lopes, Hartur Sales, Pedro Henrique, Bruno Martins
  * @date 31/10/2024
  * @brief Class Main
  */

@@ -4,9 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import vetcalc.calculadoravetor.model.calculo.Numeros;
+import vetcalc.calculadoravetor.model.calculo.Operation;
 
 /**
- * @author Murilo Nunes, Davy Lopes Oliveira, Hartur Sales, Pedro Henrique, Bruno Martins
+ * @author Murilo Nunes, Davy Lopes, Hartur Sales, Pedro Henrique, Bruno Martins
  * @date 31/10/2024
  * @brief Class Main
  */
@@ -49,7 +50,21 @@ public class CalculatorController {
         configurarChoiceBox(); //preenche a caixa de seleção de operações
         doisButton.setOnAction(e -> radioClicado(false));
         tresButton.setOnAction(e -> radioClicado(true));
+        addListeners();
     }
+
+    private void addListeners() {
+        //para fiscalizar a mudança nos textfields
+        valorX_A.textProperty().addListener((observable, oldValue, newValue) -> calcularResultado());
+        valorY_A.textProperty().addListener((observable, oldValue, newValue) -> calcularResultado());
+        valorZ_A.textProperty().addListener((observable, oldValue, newValue) -> calcularResultado());
+        valorX_B.textProperty().addListener((observable, oldValue, newValue) -> calcularResultado());
+        valorY_B.textProperty().addListener((observable, oldValue, newValue) -> calcularResultado());
+        valorZ_B.textProperty().addListener((observable, oldValue, newValue) -> calcularResultado());
+
+        operacoesBox.valueProperty().addListener((observable, oldValue, newValue) -> calcularResultado());
+    }
+
 
     private void definirVisibilidadeInicial() {
         //torna os campos específicos de algumas operaçoes invisiveis
@@ -73,7 +88,7 @@ public class CalculatorController {
 
     private void radioClicado(boolean isTresD) {
         this.isTresD = isTresD;
-        operacoesBox.setValue(null);
+        operacoesBox.getSelectionModel().clearSelection();
         resultadoDescricaoLabel.setText("");
         operacaoDescricaoLabel.setText("");
         // Ajusta a visibilidade dos componentes com base na dimensão selecionada
@@ -147,4 +162,69 @@ public class CalculatorController {
             field.setManaged(visible);
         }
     }
+
+    public void calcularResultado() {
+        try {
+            if (operacoesBox.getValue() == null) {
+                resultadoLabel.setText("Selecione uma operação");
+                return;
+            }
+
+            if (valorX_A.getText().isEmpty() || valorY_A.getText().isEmpty() || valorX_B.getText().isEmpty() || valorY_B.getText().isEmpty() ||
+                    (isTresD && (valorZ_A.getText().isEmpty() || valorZ_B.getText().isEmpty()))) {
+                resultadoLabel.setText("Preencha todos os campos");
+                return;
+            }
+
+            double x1 = Double.parseDouble(valorX_A.getText());
+            double y1 = Double.parseDouble(valorY_A.getText());
+            double z1 = isTresD ? Double.parseDouble(valorZ_A.getText()) : 0;
+
+            double x2 = Double.parseDouble(valorX_B.getText());
+            double y2 = Double.parseDouble(valorY_B.getText());
+            double z2 = isTresD ? Double.parseDouble(valorZ_B.getText()) : 0;
+
+            Numeros vetor1 = new Numeros();
+            vetor1.setNumXA(x1);
+            vetor1.setNumYA(y1);
+            vetor1.setNumZA(isTresD ? z1 : 0);
+
+            Numeros vetor2 = new Numeros();
+            vetor2.setNumXB(x2);
+            vetor2.setNumYB(y2);
+            vetor2.setNumZB(isTresD ? z2 : 0);
+
+            Operation operation = new Operation();
+            String operacao = operacoesBox.getValue();
+
+            switch (operacao) {
+                case "Produto Escalar":
+                    double produtoEscalar = operation.produtoEscalar(vetor1, vetor2);
+                    escalarResultado.setText(String.valueOf(produtoEscalar));
+                    break;
+                case "Ângulo entre os vetores":
+                    double angulo = operation.calcularAnguloEntreVetores(vetor1, vetor2);
+                    anguloResultado.setText(String.valueOf(angulo));
+                    break;
+                case "Módulo":
+                    double modulo = operation.calcularModulo(vetor1);
+                    moduloResultado.setText(String.valueOf(modulo));
+                    break;
+                case "Produto Vetorial":
+                    Numeros produtoVetorial = operation.produtoVetorial(vetor1, vetor2);
+                    valorX_Resultado.setText(String.valueOf(produtoVetorial.getNumXA()));
+                    valorY_Resultado.setText(String.valueOf(produtoVetorial.getNumYA()));
+                    valorZ_Resultado.setText(String.valueOf(produtoVetorial.getNumZA()));
+                    break;
+                default:
+                    resultadoLabel.setText("Operação inválida");
+                    break;
+            }
+
+        } catch (NumberFormatException e) {
+            resultadoLabel.setText("Insira números válidos");
+        }
+
+    }
+
 }
