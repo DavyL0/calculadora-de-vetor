@@ -6,7 +6,7 @@
 
     <groupId>vetcalc</groupId>
     <artifactId>CalculadoraVetor</artifactId>
-    <version>0.9</version>
+    <version>1.0</version>
     <name>CalculadoraVetor</name>
 
     <properties>
