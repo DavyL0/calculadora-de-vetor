@@ -173,7 +173,7 @@ public class CalculatorController {
     }
 
     private void setResultadosVisiveis(boolean visible, TextField... fields) {
-        // Método auxiliar para definir a visibilidade de múltiplos campos de texto
+        // Mtd auxiliar para definir a visibilidade de múltiplos campos de texto
         for (TextField field : fields) {
             field.setVisible(visible);
             field.setManaged(visible);
@@ -220,6 +220,9 @@ public class CalculatorController {
             vetor2.setNumXB(x2);
             vetor2.setNumYB(y2);
             vetor2.setNumZB(isTresD ? z2 : 0);
+            vetor2.setNumXA(x2);
+            vetor2.setNumYA(y2);
+            vetor2.setNumZA(isTresD ? z2 : 0);
 
             Operation operation = new Operation();
             String operacao = operacoesBox.getValue();
