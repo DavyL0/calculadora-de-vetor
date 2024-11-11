@@ -17,19 +17,19 @@ public class Operation {
 
     // Mtd para calcular o módulo de um vetor
     public double calcularModulo(Numeros vetor) {
-        System.out.println("Modulo foi chamado");
+        //System.out.println("Modulo foi chamado");
         return Math.sqrt(Math.pow(vetor.getNumXA(), 2) + Math.pow(vetor.getNumYA(), 2) + (vetor.getNumZA() != 0 ? Math.pow(vetor.getNumZA(), 2) : 0));
     }
 
     // Mtd para calcular o produto escalar entre dois vetores
     public double produtoEscalar(Numeros vetor1, Numeros vetor2) {
-        System.out.println("Produto escalar entre 2 vetores foi chamado");
+        //System.out.println("Produto escalar entre 2 vetores foi chamado");
         return vetor1.getNumXA() * vetor2.getNumXB() + vetor1.getNumYA() * vetor2.getNumYB() + vetor1.getNumZA() * vetor2.getNumZB();
     }
 
     // Mtd para calcular o ângulo entre dois vetores em graus
     public double calcularAnguloEntreVetores(Numeros vetor1, Numeros vetor2) {
-        System.out.println("Calculando o ângulo entre dois vetores");
+        //System.out.println("Calculando o ângulo entre dois vetores");
 
         double escalar = produtoEscalar(vetor1, vetor2);
         double moduloA = calcularModulo(vetor1);
@@ -55,7 +55,7 @@ public class Operation {
 
     // Mtd para calcular o produto vetorial entre dois vetores 3D
     public Numeros produtoVetorial(Numeros vetor1, Numeros vetor2) {
-        System.out.println("Produto vetorial pra 2 3d foi chamado");
+        //System.out.println("Produto vetorial pra 2 3d foi chamado");
         double x = vetor1.getNumYA() * vetor2.getNumZB() - vetor1.getNumZA() * vetor2.getNumYB();
         double y = vetor1.getNumZA() * vetor2.getNumXB() - vetor1.getNumXA() * vetor2.getNumZB();
         double z = vetor1.getNumXA() * vetor2.getNumYB() - vetor1.getNumYA() * vetor2.getNumXB();
