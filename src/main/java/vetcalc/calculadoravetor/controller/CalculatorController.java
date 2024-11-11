@@ -1,5 +1,6 @@
 package vetcalc.calculadoravetor.controller;
 
+import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
@@ -87,12 +88,11 @@ public class CalculatorController {
     }
 
     private void radioClicado(boolean isTresD) {
-        valorX_A.setText("");
-        valorY_A.setText("");
-        valorZ_A.setText("");
-        valorX_B.setText("");
-        valorY_B.setText("");
-        valorZ_B.setText("");
+        TextField[] textFields = {valorX_A, valorY_A, valorZ_A, valorX_B, valorY_B, valorZ_B, valorX_Resultado,
+                valorY_Resultado, valorZ_Resultado, anguloResultado, escalarResultado, moduloResultado};
+        for (TextField textField : textFields) {
+            textField.clear();
+        }
         this.isTresD = isTresD;
         operacoesBox.getSelectionModel().clearSelection();
         resultadoDescricaoLabel.setText("");
@@ -148,6 +148,7 @@ public class CalculatorController {
     }
 
     private void desativarVetorB(boolean visible) {
+        //serve só pra quando a operação for de modulo, pq nao da pra calcular o módulo de dois vetores
         vetorBBox.setManaged(visible);
         vetorBBox.setVisible(visible);
         valorX_B.setManaged(visible);
@@ -181,6 +182,7 @@ public class CalculatorController {
     }
 
     public void calcularResultado() {
+        resultadoLabel.setStyle("");
         try {
             if (operacoesBox.getValue() == null) {
                 resultadoLabel.setText("Selecione uma operação");
@@ -252,6 +254,7 @@ public class CalculatorController {
             }
 
         } catch (NumberFormatException e) {
+            resultadoLabel.setStyle("-fx-text-fill: red");
             resultadoLabel.setText("Insira números válidos");
         }
 
