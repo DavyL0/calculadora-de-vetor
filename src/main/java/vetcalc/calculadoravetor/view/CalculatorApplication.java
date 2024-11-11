@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,9 +19,10 @@ import java.util.Objects;
 public class CalculatorApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        Font.loadFont(Objects.requireNonNull(CalculatorApplication.class.getResource("/font/Gabarito-Regular.ttf")).toExternalForm(), 10);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vetcalc/calculadoravetor/vetores.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load(), 400, 400);
+        Scene scene = new Scene(fxmlLoader.load(), 450, 450);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/styles/styles.css")).toExternalForm());
 
         stage.getIcons().add(new Image(Objects.requireNonNull(CalculatorApplication.class.getResourceAsStream("/images/icon.png"))));
