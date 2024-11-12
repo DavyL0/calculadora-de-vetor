@@ -5,7 +5,7 @@ import vetcalc.calculadoravetor.controller.CalculatorController;
 /**
  * @author Murilo Nunes, Davy Lopes, Hartur Sales, Pedro Henrique, Bruno Martins
  * @date 31/10/2024
- * @brief Class Main
+ * @brief Class Operation
  */
 
 public class Operation {

@@ -3,7 +3,7 @@ package vetcalc.calculadoravetor.model.calculo;
 /**
  * @author Murilo Nunes, Davy Lopes, Hartur Sales, Pedro Henrique, Bruno Martins
  * @date 31/10/2024
- * @brief Class Main
+ * @brief Class Numeros
  */
 
 public class Numeros {

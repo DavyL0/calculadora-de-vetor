@@ -13,7 +13,7 @@ import java.util.Objects;
 /**
  * @author Murilo Nunes, Davy Lopes Oliveira, Hartur Sales, Pedro Henrique, Bruno Martins
  * @date 31/10/2024
- * @brief Class Main
+ * @brief Class CalculatorApplication
  */
 
 public class CalculatorApplication extends Application {
@@ -28,6 +28,8 @@ public class CalculatorApplication extends Application {
         stage.getIcons().add(new Image(Objects.requireNonNull(CalculatorApplication.class.getResourceAsStream("/images/icon.png"))));
         stage.setTitle("Calculadora de Vetor");
         stage.setScene(scene);
+        //desativa a opçao de redimensionar
+        stage.resizableProperty().setValue(Boolean.FALSE);
         stage.show();
     }
 
