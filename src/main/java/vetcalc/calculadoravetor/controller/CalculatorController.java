@@ -7,14 +7,15 @@ import javafx.scene.layout.VBox;
 import vetcalc.calculadoravetor.model.calculo.Numeros;
 import vetcalc.calculadoravetor.model.calculo.Operation;
 
+import java.text.DecimalFormat;
+
 /**
  * @author Murilo Nunes, Davy Lopes, Hartur Sales, Pedro Henrique, Bruno Martins
  * @date 31/10/2024
- * @brief Class Main
+ * @brief Class CalculatorController
  */
 
 public class CalculatorController {
-    private Numeros numeros = new Numeros();
     @FXML
     private TextField valorX_A, valorY_A, valorZ_A, valorX_B, valorY_B, valorZ_B, valorX_Resultado,
             valorY_Resultado, valorZ_Resultado, anguloResultado, escalarResultado, moduloResultado;
@@ -29,6 +30,8 @@ public class CalculatorController {
     @FXML
     private ToggleGroup dimensaoGroup, representacaoGroup;
     private boolean isTresD;
+    private static final DecimalFormat FORMATO_DECIMAL = new DecimalFormat("#,##0.###");
+    private Numeros numeros = new Numeros();
 
     public enum Operacoes {
         MODULO("Módulo", "Calcula o módulo de um vetor", "Módulo do vetor"),
@@ -232,21 +235,21 @@ public class CalculatorController {
             switch (operacao) {
                 case "Produto Escalar":
                     double produtoEscalar = operation.produtoEscalar(vetor1, vetor2);
-                    escalarResultado.setText(String.valueOf(produtoEscalar));
+                    escalarResultado.setText(String.valueOf(FORMATO_DECIMAL.format(produtoEscalar)));
                     break;
                 case "Ângulo entre os vetores":
                     double angulo = operation.calcularAnguloEntreVetores(vetor1, vetor2);
-                    anguloResultado.setText(String.valueOf(angulo));
+                    anguloResultado.setText(String.valueOf(FORMATO_DECIMAL.format(angulo)) + "°");
                     break;
                 case "Módulo":
                     double modulo = operation.calcularModulo(vetor1);
-                    moduloResultado.setText(String.valueOf(modulo));
+                    moduloResultado.setText(String.valueOf(FORMATO_DECIMAL.format(modulo)));
                     break;
                 case "Produto Vetorial":
                     Numeros produtoVetorial = operation.produtoVetorial(vetor1, vetor2);
-                    valorX_Resultado.setText(String.valueOf(produtoVetorial.getNumXA()));
-                    valorY_Resultado.setText(String.valueOf(produtoVetorial.getNumYA()));
-                    valorZ_Resultado.setText(String.valueOf(produtoVetorial.getNumZA()));
+                    valorX_Resultado.setText(String.valueOf(FORMATO_DECIMAL.format(produtoVetorial.getNumXA())));
+                    valorY_Resultado.setText(String.valueOf(FORMATO_DECIMAL.format(produtoVetorial.getNumYA())));
+                    valorZ_Resultado.setText(String.valueOf(FORMATO_DECIMAL.format(produtoVetorial.getNumZA())));
                     break;
                 default:
                     resultadoLabel.setText("Operação inválida");
